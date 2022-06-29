@@ -26,8 +26,11 @@ export const getVideo: RequestHandler = (req, res) => {
 };
 
 export const createVideos: RequestHandler = (req, res) => {
-  const video = new Videos(req.body);
-  video.save().then((response: IVideo) => res.status(201).json(response));
+  const { title,description,url } :IVideo = req.body;
+  const video = new Videos({ title,description,url });
+  video
+    .save()
+    .then((response) => res.status(201).json(response));
 };
 
 export const deleteVideos: RequestHandler = (req, res) => {
